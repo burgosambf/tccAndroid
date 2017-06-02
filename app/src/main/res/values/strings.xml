@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">"TCC Columbia"</string>
+
+    <string name="action_settings">Configuración</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_carrito">Añadir al carrito</string>
+
+    <string name="item_inicio">Inicio</string>
+    <string name="item_cuenta">Mi Cuenta</string>
+    <string name="item_categorias">Categorías</string>
+    <string name="item_configuracion">Configuración</string>
+
+    <string name="titulo_populares">Favoritos</string>
+
+    <string name="titulo_tab_deportes">DEPORTES</string>
+    <string name="titulo_tab_entretenimiento">ENTRETENIMIENTO</string>
+    <string name="titulo_tab_otros">OTROS</string>
+
+    <string name="titulo_tab_perfil">PERFIL</string>
+    <string name="titulo_tab_MIS_EVENTOS">MIS EVENTOS</string>
+    <string name="titulo_tab_tarjetas">TARJETAS</string>
+
+    <string name="texto_no_tarjetas">No tienes ninguna tarjeta asociada</string>
+
+    <string name="etiqueta_carrito">Carrito</string>
+
+    <string name="texto_cambiar_contrasena">Cambia tu contraseña</string>
+    <string name="etiqueta_contrasena">Contraseña</string>
+    <string name="etiqueta_info_usuario">Información del usuario</string>
+
+
+
+<!--PAGINADOR-->
+
+    <string name="next">Siguiente</string>
+    <string name="prev">Anterior</string>
+    <string name="finish">Reservar</string>
+    <string name="review">Verificar</string>
+
+    <string name="label_your_name">Nombre</string>
+    <string name="label_your_email">Email</string>
+    <string name="hint_your_name">Ej: Pedro</string>
+    <string name="hint_your_email">Opcional</string>
+
+    <string name="submit_confirm_message">Place the order with the deli? You will receive an email
+        confirmation.</string>
+    <string name="submit_confirm_button">Reservar</string>
+    <string name="log">logoCambiado</string>
+
+</resources>
