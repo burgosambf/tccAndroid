@@ -43,7 +43,7 @@ public class SandwichWizardModel extends AbstractWizardModel {
     private EventoDetalle eventoDetalle = new EventoDetalle();
 
 
-    public SandwichWizardModel(Context context, String cod) throws JSONException {
+    public SandwichWizardModel(Context context, String cod)throws JSONException  {
         super(context);
         evento = cod;
         eventoDetalle = buscaEventosDet(Integer.valueOf(cod));
@@ -83,7 +83,7 @@ public class SandwichWizardModel extends AbstractWizardModel {
         }
         return new PageList(
                 new BranchPage(this, "Order type")
-                        .addBranch("Sandwich",
+                        .addBranch(new Datos("01","Entrada"),
                                 new SingleFixedChoicePage(this, "Sectores")
                                         .setChoices(sectores)//(new Datos("White", "White"), new Datos("Wheat", "Wheat"))
                                         .setRequired(true),
@@ -127,30 +127,34 @@ public class SandwichWizardModel extends AbstractWizardModel {
     }
 
     public EventoDetalle buscaEventosDet(int cat) throws JSONException {//List<EventoDetalle>
-
-        String cab = "";
-        EventoDetWS eventosWS = new EventoDetWS();
         EventoDetalle t = null;
         try {
-            cab = eventosWS.execute(String.valueOf(cat)).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        if (!cab.equals("") || cab.isEmpty()) {
-            Gson gson = new Gson();
-            JSONArray jsonObj;
-            jsonObj = new JSONArray(cab);
+            String cab = "";
+            EventoDetWS eventosWS = new EventoDetWS();
+            try {
+                cab = eventosWS.execute(String.valueOf(cat)).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            if (!cab.equals("") || cab.isEmpty()) {
+                Gson gson = new Gson();
+                JSONArray jsonObj;
+                jsonObj = new JSONArray(cab);
 
-            //for (int i = 0; i < jsonObj.length(); i++) {
-            JSONObject j = (JSONObject) jsonObj.get(0);
-            t = gson.fromJson(String.valueOf(j), EventoDetalle.class);
-            //EventoDetalle t = gson.fromJson(String.valueOf(j), EventoDetalle.class);
-            //eventos.add(t);
-            //}
-        }
+                //for (int i = 0; i < jsonObj.length(); i++) {
+                JSONObject j = (JSONObject) jsonObj.get(0);
+                t = gson.fromJson(String.valueOf(j), EventoDetalle.class);
+                //EventoDetalle t = gson.fromJson(String.valueOf(j), EventoDetalle.class);
+                //eventos.add(t);
+                //}
+            }
 
-        return t;//eventos;
+            return t;//eventos;
+        }catch(JSONException e){
+            System.out.println(e);
+        }
+        return t;
     }
 }

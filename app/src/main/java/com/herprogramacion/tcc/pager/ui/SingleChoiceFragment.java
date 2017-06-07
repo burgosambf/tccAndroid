@@ -28,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.herprogramacion.restaurantericoparico.R;
+import com.herprogramacion.tcc.pager.model.Datos;
 import com.herprogramacion.tcc.pager.model.Page;
 import com.herprogramacion.tcc.pager.model.SingleFixedChoicePage;
 
@@ -39,7 +40,7 @@ public class SingleChoiceFragment extends ListFragment {
     private static final String ARG_KEY = "key";
 
     private PageFragmentCallbacks mCallbacks;
-    private List<String> mChoices;
+    private List<Datos> mChoices;//<String>
     private String mKey;
     private Page mPage;
 
@@ -64,7 +65,7 @@ public class SingleChoiceFragment extends ListFragment {
         mPage = mCallbacks.onGetPage(mKey);
 
         SingleFixedChoicePage fixedChoicePage = (SingleFixedChoicePage) mPage;
-        mChoices = new ArrayList<String>();
+        mChoices = new ArrayList<Datos>();//ArrayList<String>();
         for (int i = 0; i < fixedChoicePage.getOptionCount(); i++) {
             mChoices.add(fixedChoicePage.getOptionAt(i));
         }
@@ -77,7 +78,7 @@ public class SingleChoiceFragment extends ListFragment {
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
         final ListView listView = (ListView) rootView.findViewById(android.R.id.list);
-        setListAdapter(new ArrayAdapter<String>(getActivity(),
+        setListAdapter(new ArrayAdapter<Datos>(getActivity(),//ArrayAdapter<String>
                 android.R.layout.simple_list_item_single_choice,
                 android.R.id.text1,
                 mChoices));

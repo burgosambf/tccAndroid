@@ -23,6 +23,8 @@ import com.herprogramacion.tcc.pager.ui.PageFragmentCallbacks;
 import com.herprogramacion.tcc.pager.ui.ReviewFragment;
 import com.herprogramacion.tcc.pager.ui.StepPagerStrip;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 /**
@@ -36,7 +38,7 @@ public class ComprarEvento extends AppCompatActivity implements //ActionBarActiv
     private boolean mEditingAfterReview;
 
 
-    private AbstractWizardModel mWizardModel = new SandwichWizardModel(this, String.valueOf('1'));
+    private AbstractWizardModel mWizardModel;
 
     private boolean mConsumePageSelectedEvent;
 
@@ -49,6 +51,11 @@ public class ComprarEvento extends AppCompatActivity implements //ActionBarActiv
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
+        try {
+            mWizardModel = new SandwichWizardModel(this, String.valueOf('1'));
+        }catch (JSONException e){
+            System.out.println(e);
+        }
 
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
             setSupportActionBar(toolbar);*/

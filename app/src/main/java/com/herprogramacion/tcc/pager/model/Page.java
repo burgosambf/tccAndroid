@@ -38,7 +38,7 @@ public abstract class Page implements PageTreeNode {
     protected Bundle mData = new Bundle();
     protected String mTitle;
     protected boolean mRequired = false;
-    protected String mParentKey;
+    protected Datos mParentKey;
 
     protected Page(ModelCallbacks callbacks, String title) {
         mCallbacks = callbacks;
@@ -57,7 +57,7 @@ public abstract class Page implements PageTreeNode {
         return mRequired;
     }
 
-    void setParentKey(String parentKey) {
+    void setParentKey(Datos parentKey) {
         mParentKey = parentKey;
     }
 

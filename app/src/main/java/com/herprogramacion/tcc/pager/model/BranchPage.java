@@ -64,7 +64,7 @@ public class BranchPage extends SingleFixedChoicePage {
         }
     }
 
-    public BranchPage addBranch(String choice, Page... childPages) {
+    public BranchPage addBranch(Datos choice, Page... childPages) {
         PageList childPageList = new PageList(childPages);
         for (Page page : childPageList) {
             page.setParentKey(choice);
@@ -73,7 +73,7 @@ public class BranchPage extends SingleFixedChoicePage {
         return this;
     }
     
-    public BranchPage addBranch(String choice) {
+    public BranchPage addBranch(Datos choice) {
         mBranches.add(new Branch(choice, new PageList()));
         return this;
     }
@@ -86,7 +86,7 @@ public class BranchPage extends SingleFixedChoicePage {
     /*public String getOptionAt(int position) {
         return mBranches.get(position).choice;
     }*/
-    public String getOptionAt(int position) {
+    public Datos getOptionAt(int position) {
         return mBranches.get(position).choice;
     }
 
@@ -116,10 +116,10 @@ public class BranchPage extends SingleFixedChoicePage {
     }
 
     private static class Branch {
-        public String choice;
+        public Datos choice;
         public PageList childPageList;
 
-        private Branch(String choice, PageList childPageList) {
+        private Branch(Datos choice, PageList childPageList) {
             this.choice = choice;
             this.childPageList = childPageList;
         }

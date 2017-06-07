@@ -29,6 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.herprogramacion.restaurantericoparico.R;
+import com.herprogramacion.tcc.pager.model.Datos;
 import com.herprogramacion.tcc.pager.model.MultipleFixedChoicePage;
 import com.herprogramacion.tcc.pager.model.Page;
 
@@ -43,7 +44,8 @@ public class MultipleChoiceFragment extends ListFragment {
 
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private List<String> mChoices;
+    //private List<String> mChoices;
+    private List<Datos> mChoices;
     private Page mPage;
 
     public static MultipleChoiceFragment create(String key) {
@@ -67,7 +69,7 @@ public class MultipleChoiceFragment extends ListFragment {
         mPage = mCallbacks.onGetPage(mKey);
 
         MultipleFixedChoicePage fixedChoicePage = (MultipleFixedChoicePage) mPage;
-        mChoices = new ArrayList<String>();
+        mChoices = new ArrayList<Datos>();//<String>();
         for (int i = 0; i < fixedChoicePage.getOptionCount(); i++) {
             mChoices.add(fixedChoicePage.getOptionAt(i));
         }
@@ -80,7 +82,7 @@ public class MultipleChoiceFragment extends ListFragment {
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
         final ListView listView = (ListView) rootView.findViewById(android.R.id.list);
-        setListAdapter(new ArrayAdapter<String>(getActivity(),
+        setListAdapter(new ArrayAdapter<Datos>(getActivity(),//<String>();
                 android.R.layout.simple_list_item_multiple_choice,
                 android.R.id.text1,
                 mChoices));
