@@ -18,7 +18,7 @@ public class LogginWS extends AsyncTask<String,Integer,Boolean> {
 
         boolean resul = true;
         HttpURLConnection con = null;
-        String url= "http://181.120.188.210:9090/TicketRest/webresources/usuario/loggin";
+        String url= "http://181.120.212.172:9090/TicketRest/webresources/usuario/loggin";
         URL object;
         try {
             object = new URL(url);

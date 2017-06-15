@@ -20,7 +20,7 @@ public class EventoDetWS extends AsyncTask<String, Void,String> {
         if (le>0){
             id = params[0];
         }
-        String url = "http://181.120.188.210:9090/TicketRest/webresources/eventocab/eventosDet/" + id;
+        String url = "http://181.120.212.172:9090/TicketRest/webresources/eventocab/eventosDet/" + id;
         URL object;
         String json = "";
         try {
