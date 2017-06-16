@@ -28,11 +28,11 @@ import com.herprogramacion.tcc.pager.model.PageList;
 import com.herprogramacion.tcc.pager.model.SingleFixedChoicePage;
 import com.herprogramacion.tcc.services.EventoDetWS;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -42,11 +42,12 @@ public class SandwichWizardModel extends AbstractWizardModel {
     private List<EventoDetalle> eventos = new ArrayList<EventoDetalle>();
     private EventoDetalle eventoDetalle = new EventoDetalle();
 
-
-    public SandwichWizardModel(Context context, String cod)throws JSONException  {
+    public SandwichWizardModel(Context context) {
         super(context);
-        evento = cod;
-        eventoDetalle = buscaEventosDet(Integer.valueOf(cod));
+/*        evento = cod;
+throws JSONException
+        eventoDetalle = buscaEventosDet(Integer.valueOf(cod));*/
+
     }
 
     public List<EventoDetalle> getEventos() {
@@ -67,8 +68,13 @@ public class SandwichWizardModel extends AbstractWizardModel {
 
     @Override
     protected PageList onNewRootPageList() {
-        List<Datos> sectores = null;
-        List<Datos> horarios = null;
+        List<Datos> sectores = new LinkedList<Datos>();
+        List<Datos> horarios = new LinkedList<Datos>();
+        try {
+            eventoDetalle = buscaEventosDet(Integer.valueOf("61"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         for (EventoDetalle.Sectores temp : eventoDetalle.getSectores()) {
             Datos d = new Datos();
             d.setCodigo(temp.getCodSector());
@@ -82,8 +88,8 @@ public class SandwichWizardModel extends AbstractWizardModel {
             horarios.add(d);
         }
         return new PageList(
-                new BranchPage(this, "Order type")
-                        .addBranch(new Datos("01","Entrada"),
+                new BranchPage(this, "Evento")
+                        .addBranch(new Datos("01", "Entrada"),
                                 new SingleFixedChoicePage(this, "Sectores")
                                         .setChoices(sectores)//(new Datos("White", "White"), new Datos("Wheat", "Wheat"))
                                         .setRequired(true),
@@ -140,19 +146,20 @@ public class SandwichWizardModel extends AbstractWizardModel {
             }
             if (!cab.equals("") || cab.isEmpty()) {
                 Gson gson = new Gson();
-                JSONArray jsonObj;
-                jsonObj = new JSONArray(cab);
+                //JSONArray jsonObj;
+                JSONObject jsonObj;
+                jsonObj = new JSONObject(cab);
 
                 //for (int i = 0; i < jsonObj.length(); i++) {
-                JSONObject j = (JSONObject) jsonObj.get(0);
-                t = gson.fromJson(String.valueOf(j), EventoDetalle.class);
+                //JSONObject j = (JSONObject) jsonObj.get(0);
+                t = gson.fromJson(String.valueOf(jsonObj), EventoDetalle.class);
                 //EventoDetalle t = gson.fromJson(String.valueOf(j), EventoDetalle.class);
                 //eventos.add(t);
                 //}
             }
 
             return t;//eventos;
-        }catch(JSONException e){
+        } catch (JSONException e) {
             System.out.println(e);
         }
         return t;

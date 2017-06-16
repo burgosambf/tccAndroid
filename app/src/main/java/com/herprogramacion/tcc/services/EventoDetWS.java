@@ -44,7 +44,9 @@ public class EventoDetWS extends AsyncTask<String, Void,String> {
                     json = json + (char) car;
                     car = br.read();
                 }
-                br.close();
+                System.out.println("" + json);
+                //br.close();
+
                 return json;
 
 
@@ -53,7 +55,7 @@ public class EventoDetWS extends AsyncTask<String, Void,String> {
             }
             return json;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Respuesta: " + e);
             return null;
         }
     }
